@@ -1,0 +1,135 @@
+Chile = {
+1: 'Claudio Bravo',
+4: 'Mauricio Isla',
+17: 'Gary Medel',
+18: 'Gonzalo Jaro',
+15: 'Jean Beausejour',
+8: 'Arturo Vidal',
+21: 'Marcelo Díaz',
+20: 'Charles Aranguiz',
+6: 'José Pedro Fuenzalida',
+7: 'Alexis Sánchez',
+11: 'Eduardo Vargas'
+}
+
+Argentina = {
+1: 'Sergio Romero',
+4: 'Gabriel Mercado',
+17: 'Nicolás Otamendi',
+13: 'Ramiro Funes Mori',
+16: 'Marcos Rojo ',
+6: 'Lucas Biglia',
+14: 'Javier Mascherano',
+19: 'Éver Banega',
+10: 'Lionel Messi',
+9: 'Gonzalo Higuaín',
+7: 'Ángel Di María'
+}
+
+
+def CamisetaNombre():
+    equipo = input("Chile o Argentina: ")
+    numero = int(input("Ingresa el numero del jugador: "))
+
+    if equipo.lower() == "chile":
+        jugador = Chile.get(numero)
+        print(jugador)
+        
+    elif equipo.lower() == "argentina":
+        jugador = Argentina.get(numero)
+        print(jugador)
+
+    else:
+        jugador = None
+
+#-----------------------------------------------
+
+def NombreEquipo():
+    equipo = input("Chile o Argentina: ").lower()
+    nombre = input("nombre del jugador: ").lower()
+
+    equiposs = Chile if equipo == "chile" else Argentina if equipo.lower() == "argentina" else None
+    if not equiposs:
+        print("ingresa un equipovalido")
+        return
+    
+    for numero, jugador in equiposs.items():
+        if jugador.lower() == nombre.lower():
+            print(f"La camiseta del ugador es {numero}")
+            return
+        else:
+            print("Nombre no encontrado")
+            break
+
+
+
+#-----------------------------------------------
+
+def NumeroYjugadores():
+    try:
+        numero = int(input("Ingresa el numero del jugador: "))
+    except ValueError:
+        print("Ingresa un numero valido ")
+    
+    siestan = []
+
+    if numero in Chile:
+        siestan.append(f"Chile: {Chile[numero]}")
+    if numero in Argentina:
+        siestan.append(f"Arg: {Argentina[numero]}")
+    else:
+        print("nINGUNO lo ocupa")
+
+    for numero in siestan:
+        print(numero)
+
+#--------------------------------------------------
+
+def eliminarJugadorDiccionario():
+    nombre = input("Ingresa el nombre: ")
+    esta = False
+
+    for equipo in [Chile, Argentina]:
+        for numero, jugador in list(equipo.items()):
+            if jugador.lower() == nombre.lower():
+                del equipo[numero]
+                print(f"Eliminastea a {nombre}")
+                esta = True
+                break
+
+    if not esta:
+        print("no existe")
+
+
+
+
+#--------------menuuuuuUUuuuuu
+
+
+def menuu():
+    while True:
+        print("1- Buscar por numero y equipo")
+        print("2- Buscar numero por nombre y equipo")
+        print("3- Buscar jugadores por numero en ambos equipos")
+        print("4- Eliminar con nombre")
+        print("5- Salir")
+
+
+        opcion = input("Ingresa la opcion: ")
+        if opcion == "1":
+            CamisetaNombre()
+        elif opcion == "2":
+            NombreEquipo()
+        elif opcion == "3":
+            NumeroYjugadores()
+        elif opcion == "4":
+            eliminarJugadorDiccionario()
+        elif opcion == "5":
+            print("AdioS")
+            break
+        else:
+            print("opcion invalida") 
+
+
+
+menuu()
